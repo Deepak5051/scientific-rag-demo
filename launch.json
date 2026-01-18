@@ -1,0 +1,12 @@
+{
+    "version":"0.2.0",
+    "configuratoin": [
+        {
+            "name": "Run ingest_arxiv",
+            "type": "python",
+            "request":"launch",
+            "program":"${workspaceFolder}/backend/ingest_arxiv.py",
+            "console": "integratedTreminal"
+        }
+    ]
+}

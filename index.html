@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scientific Paper Search (RAG Demo)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🔬 Scientific Paper Search</h1>
+  <p class="subtitle">RAG based AI Demo</p>
+
+  <!-- Ask AI Section -->
+  <div class="card">
+    <h2>Ask AI</h2>
+    <input type="text" id="question" placeholder="Ask a research question..." />
+    <button onclick="askAI()">Ask</button>
+    <pre id="answerBox">AI answer will appear here...</pre>
+  </div>
+
+  <!-- Search Papers Section -->
+  <div class="card">
+    <h2>Search Papers</h2>
+    <input type="text" id="query" placeholder="Enter keyword like AI" />
+    <button onclick="searchPapers()">Search</button>
+    <pre id="result">Search result will appear here...</pre>
+  </div>
+</div>
+
+<script>
+function searchPapers() {
+  const q = document.getElementById("query").value;
+
+  fetch(`http://127.0.0.1:8000/search?q=${q}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("result").textContent =
+        JSON.stringify(data, null, 2);
+    })
+    .catch(err => {
+      document.getElementById("result").textContent =
+        "Error: Backend not running";
+    });
+}
+
+async function askAI() {
+  const question = document.getElementById("question").value;
+
+  try {
+    const res = await fetch("http://127.0.0.1:8000/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ question: question })
+    });
+
+    const data = await res.json();
+    document.getElementById("answerBox").innerText =
+      "ANSWER:\n" + data.answer;
+  } catch (error) {
+    document.getElementById("answerBox").innerText =
+      "Error: Backend not running";
+  }
+}
+</script>
+
+</body>
+</html>

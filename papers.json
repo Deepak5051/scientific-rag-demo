@@ -1,0 +1,26 @@
+
+[{
+    "id": 1,
+    "title": "AI in Healthcare",
+    "abstract": "Artificial intelligence is improving Healthcare systems."
+},
+{
+    
+    "id": 2,
+    "title": "Deep Learning Basics",
+    "abstract":"This paper explains deep learning fundamentals."
+},
+{
+    
+    "id": 3,
+    "title": "Natural language Processing",
+    "abstract": "NLP is used for text understanding and search."
+},
+{
+    "id": 4,
+    "title": "Cancer Detection using AI",
+    "abstract":"Machine learning models are used for early cancer detection"
+}
+ ]
+ 
+
